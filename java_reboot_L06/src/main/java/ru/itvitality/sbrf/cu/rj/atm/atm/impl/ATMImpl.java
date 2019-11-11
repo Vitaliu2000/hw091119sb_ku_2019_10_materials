@@ -1,6 +1,8 @@
 package ru.itvitality.sbrf.cu.rj.atm.atm.impl;
 
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.itvitality.sbrf.cu.rj.atm.Balanceable;
 import ru.itvitality.sbrf.cu.rj.atm.Nominal;
 import ru.itvitality.sbrf.cu.rj.atm.atm.ATM;
@@ -18,7 +20,7 @@ public class ATMImpl implements ATMService, ATM, Balanceable {
     private List<Balanceable> balanceables;
 
     private BufferedReader bufferedReader;
-
+    private static Logger logger = LoggerFactory.getLogger(ATMImpl.class);
     private ATMImpl() {
 
     }
@@ -52,9 +54,21 @@ public class ATMImpl implements ATMService, ATM, Balanceable {
                     try {
                         cell.put( 1 );
                         accepted = true;
+                        logger.trace("Текст в логах 1");
+                        logger.debug("Текст в логах 2");
+                        logger.info("Текст в логах 3");
+                        logger.warn("Текст в логах 4");
+                        logger.error("Текст в логах 5");
                         break;
                     } catch ( CellIsFullException e ) {
                         // TODO Залоггировать
+                        //int counter = 1;
+                        //logger.trace("message trace for file:{}", counter);
+                        logger.trace("Текст в логах 11");
+                        logger.debug("Текст в логах 22");
+                        logger.info("Текст в логах 33");
+                        logger.warn("Текст в логах 44");
+                        logger.error("Текст в логах 55");
                     }
                 }
             }
