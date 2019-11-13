@@ -1,0 +1,91 @@
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/trace.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/roll-%d{yyyy-MM-dd-1}.%i.zip</fileNamePattern>
+            <!-- each file should be at most 1MB, keep 60 days worth of history, but at most 20MB -->
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/debug.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/roll-%d{yyyy-MM-dd-2}.%i.zip</fileNamePattern>
+            <!-- each file should be at most 1MB, keep 60 days worth of history, but at most 20MB -->
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/info.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/roll-%d{yyyy-MM-dd-3}.%i.zip</fileNamePattern>
+            <!-- each file should be at most 1MB, keep 60 days worth of history, but at most 20MB -->
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/warn.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/roll-%d{yyyy-MM-dd-4}.%i.zip</fileNamePattern>
+            <!-- each file should be at most 1MB, keep 60 days worth of history, but at most 20MB -->
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/error.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/roll-%d{yyyy-MM-dd-5}.%i.zip</fileNamePattern>
+            <!-- each file should be at most 1MB, keep 60 days worth of history, but at most 20MB -->
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+
+    <logger name="ru.itvitality.sbrf.cu.rj.atm.atm.impl.ATMImpl" level="trace">
+        <appender-ref ref="TRACE" />
+    </logger>
+
+    <logger name="ru.itvitality.sbrf.cu.rj.atm.atm.impl.ATMImpl" level="debug" >
+        <appender-ref ref="DEBUG" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
